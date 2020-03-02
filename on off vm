@@ -1,0 +1,15 @@
+---
+- name: start/stop guest vm
+  hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: start/stop guest vm
+    vmware_guest:
+      hostname: "{{ lookup ('env', 'VMWARE_HOST' )}}"
+      username: "{{ lookup ('env', 'VMWARE_USER' )}}"
+      password: "{{ lookup ('env', 'VMWARE_PASSWORD' )}}"
+      validate_certs: False
+      name: "{{ vm_name }}"
+      datacenter: "{{name_dacent}}"
+      folder: "{{foldername}}"
+      state: "{{ state }}"
